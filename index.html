@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Serenity – Mental Wellness Helper</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- FLOATING PARTICLES -->
+  <canvas id="particles"></canvas>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <div class="logo">Sere<em>nity</em></div>
+    <ul>
+      <li><a href="#mood">Mood</a></li>
+      <li><a href="#breathe">Breathe</a></li>
+      <li><a href="#resources">Habits</a></li>
+      <li><a href="#affirm">Affirm</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-img-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="eyebrow-line"></span>Mental Wellness Companion</div>
+      <h1>Your mind deserves<br/><em>gentle</em> care<br/>every day.</h1>
+      <p>A calm, private space to check in with yourself — track your mood, breathe, and find support whenever you need it.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('mood').scrollIntoView({behavior:'smooth'})">Check In Now</button>
+        <button class="btn-outline" onclick="document.getElementById('breathe').scrollIntoView({behavior:'smooth'})">Try Breathing ↓</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       MOOD CHECK-IN
+  ══════════════════════════════════ -->
+  <section class="section fade-up" id="mood">
+    <div class="split-layout">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=700&q=85" alt="Peaceful person in nature"/>
+        <div class="img-caption">✦ Check in with yourself</div>
+      </div>
+      <div class="split-content">
+        <div class="section-label">Mood Check-In</div>
+        <h2>How are you feeling?</h2>
+        <p class="sub">Take a moment to acknowledge your emotional state — no judgment, just awareness.</p>
+        <div class="mood-grid">
+          <div class="mood-card" onclick="selectMood(this,'🍃 You\'re in a peaceful place. Take a slow breath and enjoy this calm. You deserve this stillness.')">
+            <span class="mood-emoji">😌</span><div class="mood-label">Peaceful</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'✨ Your joy is beautiful. Let it radiate and touch everything around you today.')">
+            <span class="mood-emoji">😄</span><div class="mood-label">Happy</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'💙 Anxiety is just care turned inward too much. Breathe slowly — you are safe right now.')">
+            <span class="mood-emoji">😟</span><div class="mood-label">Anxious</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'🌧 It\'s okay to feel sad. Tears are the rain that helps you grow. Be gentle with yourself.')">
+            <span class="mood-emoji">😢</span><div class="mood-label">Sad</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'🌙 Rest is not laziness — it is medicine. Your body and mind are asking for care.')">
+            <span class="mood-emoji">😴</span><div class="mood-label">Tired</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'🔥 Anger is information. Something matters deeply. Breathe before you respond.')">
+            <span class="mood-emoji">😤</span><div class="mood-label">Angry</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'🙏 Gratitude is a superpower. You\'ve already noticed something good today.')">
+            <span class="mood-emoji">🥹</span><div class="mood-label">Grateful</div>
+          </div>
+          <div class="mood-card" onclick="selectMood(this,'🕊 Numbness is okay. You don\'t have to feel everything at once. Just be here.')">
+            <span class="mood-emoji">😶</span><div class="mood-label">Numb</div>
+          </div>
+        </div>
+        <div id="mood-message"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ══════════════════════════════════
+       BREATHING
+  ══════════════════════════════════ -->
+  <div class="breathe-section fade-up" id="breathe">
+    <div class="breathe-img-bg"></div>
+    <div class="breathe-overlay"></div>
+    <div class="breathe-content">
+      <h2>Guided Breathing</h2>
+      <p>4 · 7 · 8 — inhale, hold, exhale. Calm your nervous system in minutes.</p>
+      <div class="breath-orb-wrap">
+        <div class="breath-orb" id="breath-orb"></div>
+      </div>
+      <div id="breath-label">Ready?</div>
+      <div id="breath-count">●</div>
+      <button class="btn-breath" id="breath-btn" onclick="startBreathing()">Begin</button>
+    </div>
+  </div>
+
+  <div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ══════════════════════════════════
+       WELLNESS TIPS
+  ══════════════════════════════════ -->
+  <section class="section resources-section fade-up" id="resources">
+    <div class="section-label">Daily Rituals</div>
+    <h2>Simple daily habits</h2>
+    <p class="sub">Small, consistent actions that support your mental health every day.</p>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-img"><img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80" alt="Meditation"/></div>
+        <div class="resource-icon">🧘</div>
+        <h3>Mindfulness</h3>
+        <p>5 minutes of mindful awareness daily reduces stress and sharpens focus.</p>
+      </div>
+      <div class="resource-card">
+        <div class="resource-img"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80" alt="Exercise"/></div>
+        <div class="resource-icon">🏃</div>
+        <h3>Move Your Body</h3>
+        <p>30 minutes of movement releases endorphins that naturally lift mood and ease anxiety.</p>
+      </div>
+      <div class="resource-card">
+        <div class="resource-img"><img src="https://images.unsplash.com/photo-1455642305367-68834a1da7ab?w=600&q=80" alt="Sleep"/></div>
+        <div class="resource-icon">😴</div>
+        <h3>Sleep Well</h3>
+        <p>Consistent sleep is the foundation of mental health. Dim lights and unplug 1 hr before bed.</p>
+      </div>
+      <div class="resource-card">
+        <div class="resource-img"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Connection"/></div>
+        <div class="resource-icon">🤝</div>
+        <h3>Connect</h3>
+        <p>One message or call to someone you care about can break the cycle of isolation.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ══════════════════════════════════
+       AFFIRMATIONS
+  ══════════════════════════════════ -->
+  <section class="affirm-section fade-up" id="affirm">
+    <div class="affirm-img-bg"></div>
+    <div class="affirm-overlay"></div>
+    <div class="affirm-content">
+      <div class="section-label" style="justify-content:center;">Daily Affirmation</div>
+      <h2>Words that heal.</h2>
+      <p class="sub" style="margin:0 auto 2.8rem; text-align:center; max-width:440px;">Read it slowly. Breathe it in. Let it settle.</p>
+      <div class="affirmation-box">
+        <div id="affirmation-text">"I am allowed to take up space. I am enough, exactly as I am."</div>
+        <button class="btn-affirm" onclick="newAffirmation()">New Affirmation ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CRISIS SUPPORT ── -->
+  <div class="crisis-bar fade-up">
+    <span>💛</span>
+    <p>
+      If you're in crisis or having thoughts of self-harm, please reach out immediately. &nbsp;
+      <strong>India:</strong> iCall – <a href="tel:9152987821">9152987821</a> &nbsp;|&nbsp;
+      <strong>International:</strong> <a href="https://findahelpline.com" target="_blank">findahelpline.com</a> &nbsp;|&nbsp;
+      <strong>Emergency:</strong> <a href="tel:112">112</a>
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
